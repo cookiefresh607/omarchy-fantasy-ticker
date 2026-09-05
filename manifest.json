@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "fantasy-ticker",
+  "name": "Fantasy Ticker",
+  "version": "0.1.0",
+  "author": "DatKidKookieFresh",
+  "license": "MIT",
+  "description": "A static NFL fantasy matchup widget for the Omarchy bar",
+  "kinds": ["bar-widget"],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Fantasy Ticker",
+    "description": "Shows fantasy football information in the Omarchy bar",
+    "category": "Sports",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "userId": "1401303717864595456",
+      "leagueId": "1395841715717292032",
+      "refreshSeconds": 60
+    },
+    "schema": [
+      {
+        "key": "userId",
+        "type": "string",
+        "label": "Sleeper user ID"
+      },
+      {
+        "key": "leagueId",
+        "type": "string",
+        "label": "Sleeper league ID"
+      },
+      {
+        "key": "refreshSeconds",
+        "type": "number",
+        "label": "Refresh interval (seconds)"
+      }
+    ]
+  }
+}
