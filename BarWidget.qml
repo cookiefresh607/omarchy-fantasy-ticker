@@ -23,11 +23,9 @@ BarWidget {
   property string opponentScoreText: "—"
   property string lastUpdatedText: ""
 
-  readonly property string defaultUserId: "1401303717864595456"
-  readonly property string defaultLeagueId: "1395841715717292032"
   readonly property string apiBase: "https://api.sleeper.app/v1"
-  readonly property string userId: String(setting("userId", defaultUserId))
-  readonly property string leagueId: String(setting("leagueId", defaultLeagueId))
+  readonly property string userId: String(setting("userId", ""))
+  readonly property string leagueId: String(setting("leagueId", ""))
   readonly property int refreshIntervalMs: Math.max(
     30000, Number(setting("refreshSeconds", 60)) * 1000)
 

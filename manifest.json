@@ -17,8 +17,6 @@
     "allowMultiple": false,
     "defaultSection": "right",
     "defaults": {
-      "userId": "1401303717864595456",
-      "leagueId": "1395841715717292032",
       "refreshSeconds": 60
     },
     "schema": [
