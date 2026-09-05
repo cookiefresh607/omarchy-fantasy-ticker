@@ -18,8 +18,8 @@ Omarchy bar widget for a single Sleeper NFL fantasy league.
 The manifest records the development identifiers:
 
 ```text
-userId:   1401303717864595456
-leagueId: 1395841715717292032
+userId:   YOUR_SLEEPER_USER_ID
+leagueId: YOUR_SLEEPER_LEAGUE_ID
 ```
 
 These values are identifiers, not passwords or API tokens. They are passed to the widget through its inline Omarchy bar configuration.
