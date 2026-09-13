@@ -17,6 +17,7 @@
     "allowMultiple": false,
     "defaultSection": "right",
     "defaults": {
+      "leagueName": "Fantasy League",
       "refreshSeconds": 60
     },
     "schema": [
@@ -29,6 +30,11 @@
         "key": "leagueId",
         "type": "string",
         "label": "Sleeper league ID"
+      },
+      {
+        "key": "leagueName",
+        "type": "string",
+        "label": "League display name"
       },
       {
         "key": "refreshSeconds",

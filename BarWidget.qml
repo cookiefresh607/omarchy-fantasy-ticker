@@ -26,8 +26,8 @@ BarWidget {
   readonly property string apiBase: "https://api.sleeper.app/v1"
   readonly property string userId: String(setting("userId", ""))
   readonly property string leagueId: String(setting("leagueId", ""))
-  readonly property int refreshIntervalMs: Math.max(
-    30000, Number(setting("refreshSeconds", 60)) * 1000)
+  readonly property string leagueName: configuredLeagueName()
+  readonly property int refreshIntervalMs: configuredRefreshSeconds() * 1000
 
   property var nflState: null
   property var rosters: []
@@ -35,6 +35,12 @@ BarWidget {
 
   function validConfiguration() {
     return /^\d+$/.test(userId) && /^\d+$/.test(leagueId)
+  }
+
+  function configuredRefreshSeconds() {
+    var seconds = Number(setting("refreshSeconds", 60))
+    if (!isFinite(seconds) || seconds <= 0) return 60
+    return Math.max(30, Math.floor(seconds))
   }
 
   function scoreText(value) {
@@ -46,6 +52,10 @@ BarWidget {
   function cleanName(value) {
     return String(value === null || value === undefined ? "" : value)
       .replace(/[\r\n\t]+/g, " ").trim().slice(0, 80)
+  }
+
+  function configuredLeagueName() {
+    return cleanName(setting("leagueName", "Fantasy League")) || "Fantasy League"
   }
 
   function teamNameForRoster(roster, fallback) {
@@ -205,7 +215,7 @@ BarWidget {
 
       var opponent = null
       for (var k = 0; k < parsed.length; k++) {
-        if (parsed[k].matchup_id === myMatchup.matchup_id
+        if (String(parsed[k].matchup_id) === String(myMatchup.matchup_id)
             && String(parsed[k].roster_id) !== String(myMatchup.roster_id)) {
           opponent = parsed[k]
           break
@@ -348,7 +358,7 @@ BarWidget {
       }
 
       Text {
-        text: "JBC Fantasy League"
+        text: root.leagueName
         textFormat: Text.PlainText
         color: root.bar.foreground
         font.family: root.bar.fontFamily
