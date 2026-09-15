@@ -191,6 +191,18 @@ omarchy-shell shell rescanPlugins
 This rescans plugin code without restarting your whole session. Omarchy also
 reloads plugin files saved under `~/.config/omarchy/plugins/` automatically.
 
+## Remove Fantasy Ticker
+
+To remove the installed plugin, use Omarchy's supported removal command:
+
+```bash
+omarchy plugin remove fantasy-ticker
+```
+
+After removal, check `~/.config/omarchy/shell.json` and remove or review any
+remaining `fantasy-ticker` bar entry if Omarchy leaves one behind. Preserve
+your other bar widgets and settings.
+
 ## Verify the installation
 
 A successful setup looks like this:

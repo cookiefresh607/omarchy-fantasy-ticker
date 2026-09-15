@@ -41,11 +41,11 @@ The local documentation and examples inspected were:
 - `/usr/share/omarchy/shell/README.md`
 - `/usr/share/omarchy/shell/Ui/BarWidget.qml`
 - `/usr/share/omarchy/shell/services/PluginRegistry.qml`
-- `/home/kec/.config/omarchy/shell.json`
-- `/home/kec/.config/omarchy/plugins/kairos.day-in-history/`
-- `/home/kec/.config/omarchy/plugins/slcode777.omagotchi/`
-- `/home/kec/.config/omarchy/plugins/io.github.seangsr.omarchy-cleaner/`
-- `/home/kec/.config/omarchy/plugins/akshar.radio-atlas/`
+- `~/.config/omarchy/shell.json`
+- `~/.config/omarchy/plugins/kairos.day-in-history/`
+- `~/.config/omarchy/plugins/slcode777.omagotchi/`
+- `~/.config/omarchy/plugins/io.github.seangsr.omarchy-cleaner/`
+- `~/.config/omarchy/plugins/akshar.radio-atlas/`
 
 Important Omarchy decisions from that inspection:
 

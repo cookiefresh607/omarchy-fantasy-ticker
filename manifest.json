@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "author": "DatKidKookieFresh",
   "license": "MIT",
-  "description": "A static NFL fantasy matchup widget for the Omarchy bar",
+  "description": "A live Sleeper NFL fantasy matchup widget for the Omarchy bar",
   "kinds": ["bar-widget"],
   "entryPoints": {
     "barWidget": "BarWidget.qml"
