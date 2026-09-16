@@ -27,11 +27,15 @@ You need:
 - Omarchy with the `omarchy` command available.
 - A Sleeper account.
 - An NFL fantasy league on Sleeper.
+- Python 3, which Omarchy uses for the response-size safety helper.
 - A working internet connection while finding your league and while using the
   live ticker.
 
 You do not need a Sleeper API key, login token, password, or special API
 software. The commands below use `curl`, which is included with Omarchy.
+
+For safety, each Sleeper response is streamed through a small Python helper
+that limits the response body to 1 MiB before it reaches the widget.
 
 ## Installation
 

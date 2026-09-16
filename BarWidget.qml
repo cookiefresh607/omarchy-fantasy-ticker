@@ -24,6 +24,8 @@ BarWidget {
   property string lastUpdatedText: ""
 
   readonly property string apiBase: "https://api.sleeper.app/v1"
+  readonly property string maxResponseBytes: "1048576"
+  readonly property string limiterPath: Qt.resolvedUrl("bounded_response.py").toString().replace(/^file:\/\//, "")
   readonly property string userId: String(setting("userId", ""))
   readonly property string leagueId: String(setting("leagueId", ""))
   readonly property string leagueName: configuredLeagueName()
@@ -56,6 +58,14 @@ BarWidget {
 
   function configuredLeagueName() {
     return cleanName(setting("leagueName", "Fantasy League")) || "Fantasy League"
+  }
+
+  function boundedCurlCommand(url) {
+    return [
+      "bash", "-o", "pipefail", "-c",
+      "curl --fail --silent --show-error --max-time 10 --max-filesize \"$3\" -- \"$1\" | python3 \"$2\"",
+      "fantasy-ticker-request", url, limiterPath, maxResponseBytes
+    ]
   }
 
   function teamNameForRoster(roster, fallback) {
@@ -105,10 +115,7 @@ BarWidget {
     loading = true
     errorText = ""
     statusText = hasData ? "Refreshing…" : "Loading…"
-    stateProcess.command = [
-      "curl", "--fail", "--silent", "--show-error", "--max-time", "10",
-      apiBase + "/state/nfl"
-    ]
+    stateProcess.command = boundedCurlCommand(apiBase + "/state/nfl")
     stateProcess.running = true
   }
 
@@ -130,10 +137,7 @@ BarWidget {
   }
 
   function fetchRosters(week) {
-    rostersProcess.command = [
-      "curl", "--fail", "--silent", "--show-error", "--max-time", "10",
-      apiBase + "/league/" + leagueId + "/rosters"
-    ]
+    rostersProcess.command = boundedCurlCommand(apiBase + "/league/" + leagueId + "/rosters")
     rostersProcess.running = true
   }
 
@@ -152,10 +156,7 @@ BarWidget {
   }
 
   function fetchUsers(week) {
-    usersProcess.command = [
-      "curl", "--fail", "--silent", "--show-error", "--max-time", "10",
-      apiBase + "/league/" + leagueId + "/users"
-    ]
+    usersProcess.command = boundedCurlCommand(apiBase + "/league/" + leagueId + "/users")
     usersProcess.running = true
   }
 
@@ -174,10 +175,7 @@ BarWidget {
   }
 
   function fetchMatchups(week) {
-    matchupsProcess.command = [
-      "curl", "--fail", "--silent", "--show-error", "--max-time", "10",
-      apiBase + "/league/" + leagueId + "/matchups/" + week
-    ]
+    matchupsProcess.command = boundedCurlCommand(apiBase + "/league/" + leagueId + "/matchups/" + week)
     matchupsProcess.running = true
   }
 
